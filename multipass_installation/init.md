@@ -15,3 +15,11 @@ multipass networks
 multipass set local.bridged-network="Wi-Fi"
 multipass launch --name bridge-test --bridged
 ```
+
+multipass create node command:
+```sh
+#delete node
+multipass delete <node-name>
+multipass purge
+multipass launch --name <node-name> --memory 3G --cpus 2 --bridged
+```
