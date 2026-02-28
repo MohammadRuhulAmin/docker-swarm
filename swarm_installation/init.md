@@ -31,3 +31,29 @@ docker service update <service_id>  --replicas 3
 ```sh
 docker service rm <service_id>
 ```
+
+To create a worker node to manager: 
+```sh
+docker node update --role manager node2
+```
+
+To see the token of a specific role:
+```sh
+docker swarm join-token manager
+```
+
+create a network
+```sh
+docker network create --driver overlay <network-name>
+```
+create database:
+```sh
+docker service create --name psql --network mydrupal -e POSTGRES_PASSWORD=mypass postgres
+docker service create --name drupal --network mydrupal -p 80:80 drupal
+```
+
+to change the state of a container:
+```sh
+docker node update --availability drain node-1
+docker node update --availability active node-1
+```
