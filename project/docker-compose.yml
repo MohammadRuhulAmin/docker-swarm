@@ -1,0 +1,27 @@
+version: "3.8"
+
+services:
+  web:
+    build:
+      context: .
+      dockerfile: Dockerfile
+
+    image: fastapi-swarm-app:1.0
+
+    ports:
+      - target: 8000
+        published: 8000
+        protocol: tcp
+        mode: ingress
+
+    networks:
+      - fastapi_network
+
+    deploy:
+      replicas: 3
+      placement:
+        max_replicas_per_node: 2
+
+networks:
+  fastapi_network:
+    driver: overlay
